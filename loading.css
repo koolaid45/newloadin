@@ -1,5 +1,6 @@
 body{
-	background-color: #222222;
+	background-image: url("bg.png");
+	background-repeat: no-repeat;
 }
 #progressbar {
 	background-color: rgb(111, 0, 255);
