@@ -1,0 +1,71 @@
+<html>
+	<head>
+		<title>Loading..</title>
+		<link rel="stylesheet" type="text/css" href="loading.css?3" />
+		<script type="text/javascript" src="js/thirdparty/jquery.js"></script>
+	</head>
+	<body>
+		<center>
+			<div style="background-color: transparent;height: 35%;"></div>
+			<b><h1 id="serverName" style="color: rgb(111, 0, 255); top: 33%; font-family: 'Courier New', Courier, monospace; font-size: 50px;"></h1></b>
+			<hr id="loadin2"  class="w3-border-white" style="width: 100%;left: 0%; font-family: 'Courier New', Courier, monospace;">
+			<h1 id="serverMap" style="color: white; left: 66%; font-family: 'Courier New', Courier, monospace; font-size: 20px;"></h1>
+			<hr id="loadin1"  class="w3-border-white" style="width: 100%; left: 0%; font-family: 'Courier New', Courier, monospace;">
+			<div id="progressbar" class="progress-bar"></div>
+			<h1 id="prog" style="color: white;left: 50%; top: 33%; font-family: 'Courier New', Courier, monospace; font-size: 20px;"></h1>
+			<hr id="loadin"  class="w3-border-white" style="width: 100%;left: 0%; font-family: 'Courier New', Courier, monospace;">
+			<h1 id="poopess" style="color: white; left: 66%; font-family: 'Courier New', Courier, monospace; font-size: 12px;"></h1>
+		</center>
+		<script type="text/javascript">
+			var lmao = {}
+			function GameDetails( servername, serverurl, mapname, maxplayers, steamid, gamemode, volume, lang, gamemodeNice )
+			{
+				$("#serverName").text( servername );
+				$("#serverMap").text( mapname );
+				$("#serverGamemode").text( gamemodeNice );
+				//$("body").css( "background-image", "url( 'asset://mapimage/" + mapname + "' )" );
+
+				$(".server_info").addClass( "visible" );
+
+				// Do with these what you will :)
+				// this function gets called only when joining a multiplayer server
+				/*$("#spambox").append("serverurl: " + serverurl + "<br>");
+				$("#spambox").append("servername: " + servername + "<br>");
+				$("#spambox").append("maxplayers: " + maxplayers + "<br>");
+				$("#spambox").append("steamid: " + steamid + "<br>");
+				$("#spambox").append("gamemode: " + gamemode + "<br>");
+				$("#spambox").append("mapname: " + mapname + "<br>");
+				$("#spambox").append("volume: " + volume + "<br>");
+				$("#spambox").append("lang: " + lang + "<br>");*/
+			}
+			function lerp(v0, v1, t) {
+    			return v0*(1-t)+v1*t
+			}	
+			// A file has begun downloading
+			function DownloadingFile( file )
+			{
+				$("#file").text( file);
+			}
+
+			// This will not be called when DownloadingFile() is
+			function SetStatusChanged( status )
+			{
+				$("#poopess").prepend( status+"<br>");
+			}
+			function SetFilesTotal( total ) {
+				lmao.totalfiles = total;
+			}
+			function SetFilesNeeded( needed ) {
+				var filesRemaining = Math.max(0, lmao.totalfiles - needed),
+            	progress = (lmao.totalfiles > 0) ?
+                (filesRemaining / lmao.totalfiles) : 1;
+
+        		progress = Math.round(progress * 100);
+				lmao.progress = (100 - progress);
+        		$("#progressbar").css("width",lmao.progress + '%');
+				$("#prog").text( lmao.progress + '%' );
+			}
+		</script>
+
+	</body>
+</html>

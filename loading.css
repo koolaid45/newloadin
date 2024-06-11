@@ -1,0 +1,12 @@
+body{
+	background-color: #222222;
+}
+#progressbar {
+	background-color: rgb(111, 0, 255);
+
+	top:50px;
+	bottom: 0;
+	left: 0;
+	height: 30px;
+	width: 1%;
+}
